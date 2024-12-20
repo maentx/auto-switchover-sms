@@ -1,0 +1,9 @@
+node_modules/
+
+# VS Code swap files
+.vscode/*
+.history/
+
+# Vim swap files
+*.swp
+*~ 
