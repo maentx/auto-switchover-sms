@@ -1,0 +1,44 @@
+version: '3'
+services:
+  ne:
+    build:
+        context: ./ne
+        dockerfile: Dockerfile
+    ports:
+      - "8080:3000"
+    networks:
+      - mynetwork
+    volumes:
+      - /home/maentx/workspace/auto-switchover-sms/ne:/app
+    working_dir: /app
+    entrypoint: ["node", "--watch", "ne.js"]
+
+  provider-a:
+    build:
+        context: ./provider-a
+        dockerfile: Dockerfile
+    ports:
+      - "8081:3000"
+    networks:
+      - mynetwork
+    volumes:
+      - /home/maentx/workspace/auto-switchover-sms/provider-a:/app
+    working_dir: /app
+    entrypoint: ["node", "--watch", "provider.js"]
+
+  provider-b:
+    build:
+        context: ./provider-b
+        dockerfile: Dockerfile
+    ports:
+      - "8082:3000"
+    networks:
+      - mynetwork
+    volumes:
+      - /home/maentx/workspace/auto-switchover-sms/provider-b:/app
+    working_dir: /app
+    entrypoint: ["node", "--watch", "provider.js"]
+
+networks:
+  mynetwork:
+    driver: bridge
