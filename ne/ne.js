@@ -75,7 +75,7 @@ function checkResponseTimes() {
         const slowRequests = providers[providerKey].responseTimes.filter((time) => time > 5000).length;
         const slowPercentage = (totalRequests > 0) ? (slowRequests / totalRequests) * 100 : 0;
         logMsg += `Provider ${providerKey}: ${slowPercentage.toFixed(2)}% slow responses || `;
-        
+
 
         if (slowPercentage > 5 && providers[providerKey].health === 'healthy') {
             console.log(`Setting provider ${providerKey} to unhealthy due to latency.`);
@@ -93,6 +93,7 @@ function checkResponseTimes() {
 }
 
 // SMS endpoint to send SMS
+// curl -X POST http://localhost:8080/send-sms -H "Content-Type: application/json" -d '{ "provider": "A" }'
 app.post('/send-sms', async (req, res) => {
     try {
         const messageId = uuid.v4();
