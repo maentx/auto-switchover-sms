@@ -10,6 +10,7 @@ services:
       - mynetwork
     volumes:
       - /home/maentx/workspace/auto-switchover-sms/ne:/app
+      - /app/node_modules
     working_dir: /app
     entrypoint: ["node", "--watch", "ne.js"]
 
@@ -23,6 +24,7 @@ services:
       - mynetwork
     volumes:
       - /home/maentx/workspace/auto-switchover-sms/provider-a:/app
+      - /app/node_modules
     working_dir: /app
     entrypoint: ["node", "--watch", "provider.js"]
 
@@ -36,6 +38,7 @@ services:
       - mynetwork
     volumes:
       - /home/maentx/workspace/auto-switchover-sms/provider-b:/app
+      - /app/node_modules
     working_dir: /app
     entrypoint: ["node", "--watch", "provider.js"]
 
